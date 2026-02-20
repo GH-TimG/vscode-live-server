@@ -117,7 +117,7 @@ export class Helper {
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
-            cors: true,
+            cors: false,
             wait: Config.getWait || 100,
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,
