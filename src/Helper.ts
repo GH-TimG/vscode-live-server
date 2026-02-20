@@ -84,6 +84,7 @@ export class Helper {
         workspacePath = workspacePath || '';
         const port = Config.getPort;
         const headers = Config.getHeaders || {};
+        const corsEnabled = Config.getCors;
         const ignorePathGlob = Config.getIgnoreFiles || [];
 
         const ignoreFiles = [];
@@ -106,6 +107,21 @@ export class Helper {
             }
         });
 
+
+        // Strip any user-provided CORS headers to prevent bypassing the disabled default
+        if (!corsEnabled) {
+            let hasStrippedAtleastOneHeader = false;
+            for (const key of Object.keys(headers)) {
+                if (/^access-control-allow-/i.test(key)) {
+                    delete headers[key];
+                    hasStrippedAtleastOneHeader = true;
+                }
+            }
+            if (hasStrippedAtleastOneHeader) {
+                console.warn('Stripped user-provided Access-Control-Allow-* headers because CORS is disabled.');
+            }
+        }
+
         const file = Config.getFile;
         return {
             port: port,
@@ -117,7 +133,7 @@ export class Helper {
             ignore: ignoreFiles,
             disableGlobbing: true,
             proxy: proxy,
-            cors: Config.getCors || false,
+            cors: corsEnabled,
             wait: Config.getWait || 100,
             fullReload: Config.getfullReload,
             useBrowserExtension: Config.getUseWebExt,

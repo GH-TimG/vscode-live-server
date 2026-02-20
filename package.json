@@ -301,7 +301,6 @@
           "default": {},
           "description": "Add additional headers"
         },
-        
         "liveServer.settings.cors": {
           "type": "boolean",
           "default": false,

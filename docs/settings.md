@@ -5,6 +5,13 @@
 
     <hr>
  
+* **`liveServer.settings.cors`:** Controls wheter the Live Server allows cross-origin requests from browser contexts.
+
+    Purpose: Prevents accidental exposure of local development servers to external web pages.
+    *  _Default value is `false` (CORS disabled)._
+
+    <hr>
+
 * **`liveServer.settings.root`:** To change root of server in between workspace folder structure,  use `/` and absolute path from workspace.
     * _Example: `/sub_folder1/sub_folder2`_. Now `sub_folder2` will be root of the server.
     
