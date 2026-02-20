@@ -84,7 +84,7 @@ export class Helper {
         workspacePath = workspacePath || '';
         const port = Config.getPort;
         const headers = Config.getHeaders || {};
-        const corsEnabled = Config.getCors;
+        const corsEnabled = Config.getCors || false;
         const ignorePathGlob = Config.getIgnoreFiles || [];
 
         const ignoreFiles = [];
@@ -110,14 +110,14 @@ export class Helper {
 
         // Strip any user-provided CORS headers to prevent bypassing the disabled default
         if (!corsEnabled) {
-            let hasStrippedAtleastOneHeader = false;
+            let hasStrippedAtLeastOneHeader = false;
             for (const key of Object.keys(headers)) {
                 if (/^access-control-allow-/i.test(key)) {
                     delete headers[key];
-                    hasStrippedAtleastOneHeader = true;
+                    hasStrippedAtLeastOneHeader = true;
                 }
             }
-            if (hasStrippedAtleastOneHeader) {
+            if (hasStrippedAtLeastOneHeader) {
                 console.warn('Stripped user-provided Access-Control-Allow-* headers because CORS is disabled.');
             }
         }

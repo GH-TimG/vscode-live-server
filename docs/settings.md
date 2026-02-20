@@ -5,7 +5,7 @@
 
     <hr>
  
-* **`liveServer.settings.cors`:** Controls wheter the Live Server allows cross-origin requests from browser contexts.
+* **`liveServer.settings.cors`:** Controls whether the Live Server allows cross-origin requests from browser contexts.
 
     Purpose: Prevents accidental exposure of local development servers to external web pages.
     *  _Default value is `false` (CORS disabled)._
