@@ -1,5 +1,6 @@
 'use strict';
 
+import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Config } from './Config';
@@ -118,7 +119,7 @@ export class Helper {
                 }
             }
             if (hasStrippedAtLeastOneHeader) {
-                console.warn('Stripped user-provided Access-Control-Allow-* headers because CORS is disabled.');
+                vscode.window.showWarningMessage('Stripped user-provided Access-Control-Allow-* headers because CORS is disabled.');
             }
         }
 
